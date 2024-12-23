@@ -1,0 +1,49 @@
+
+
+
+<div class="container mt-3">
+  <div class="row align-items-center">
+    <div class="col">
+      <h1 class="d-inline">Admin - Tax Rates</h1>
+    </div>
+    <div class="col-auto">
+      <% if current_user.is_admin? %> 
+        <%= link_to new_admin_tax_rate_path, class: "btn btn-success btn-sm" do %>
+          <i class="fas fa-plus-circle"></i> Add
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Rate</th>
+      <th scope="col">Type</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tax_rates.each_with_index do |tax_rate, index| %>
+      <tr>
+        <th scope="row"><%= index + 1 %></td>
+        <td><%= tax_rate.product.name %></td>
+        <td><%= tax_rate.rate %></td>
+        <td><%= tax_rate.tax_type %></td>
+        <td class="d-flex align-items-center">
+          <% if current_user.is_admin? %>
+            <%= link_to edit_admin_tax_rate_path(tax_rate), class: "btn btn-primary btn-sm" do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+            <%= button_to admin_tax_rate_path(tax_rate), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

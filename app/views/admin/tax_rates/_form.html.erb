@@ -1,0 +1,27 @@
+<div class="container mt-5"> 
+  <%= form_with model: [:admin, @tax_rate], local: true do |form| %>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <%= form.label :tax_type, "Select an Tax Type", class: "form-label" %>
+        <%= form.select :tax_type, TaxRate.tax_types.keys.map { |w| [w.humanize, w] }, {}, class: "form-select", aria: { label: "Select an option" } %>
+      </div>
+      <div class="col-md-6 mb-3">
+        <%= form.label :rate, class: "form-label" %>
+        <%= form.number_field :rate, class: "form-control", placeholder: "Enter a rate", step: "0.01", min: "0" %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= form.label :product_id, "Choose a Product" %>
+      <%= form.select :product_id, options_for_select(Product.all.collect { |p| [p.name, p.id] }), prompt: "Select a product", class: "form-control" %>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+      <%= form.submit class: 'btn btn-success mx-2' do %>
+        <i class="fas fa-check"></i> Submit
+      <% end %>
+      <%= link_to admin_tax_rates_path, class: 'btn btn-secondary mx-2' do %>
+        <i class="fas fa-arrow-left"></i> Back
+      <% end %>
+    </div>
+  <% end %>
+</div>

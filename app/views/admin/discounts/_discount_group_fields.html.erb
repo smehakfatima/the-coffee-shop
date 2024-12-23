@@ -1,0 +1,15 @@
+<div class="nested-fields">
+  <div class="field mb-3">
+    <%= f.label :product_ids, "Select Products", class: "form-label" %>
+    
+    <!-- Collection Select with multiple option -->
+    <%= f.collection_select :product_ids, Product.all, :id, :name, 
+                            { include_hidden: false }, 
+                            { class: "form-select", multiple: true, aria: { label: "Select products" } } %>
+  </div>
+
+  <!-- Remove Group Button -->
+  <div class="form-group col-auto">
+    <%#= link_to_remove_association "Remove Group", f, class: "btn btn-danger btn-sm" %>
+  </div>
+</div>

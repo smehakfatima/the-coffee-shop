@@ -1,0 +1,26 @@
+<h1>My Orders</h1>
+
+<% if @orders.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Order Number</th>
+        <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.id %></td>
+          <td><%= order.created_at.strftime("%B %d, %Y") %></td>
+          <td><%= order.status.to_s.humanize %></td>
+          <td><%= number_to_currency(order.total) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>You have no orders yet.</p>
+<% end %>

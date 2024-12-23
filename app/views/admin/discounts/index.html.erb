@@ -1,0 +1,59 @@
+
+<div class="container mt-3">
+  <div class="row align-items-center">
+    <div class="col">
+      <h1 class="d-inline">Admin - Discounts List</h1>
+    </div>
+    <div class="col-auto">
+      <% if current_user.is_admin? %> 
+        <%= link_to new_admin_discount_path, class: "btn btn-success btn-sm" do %>
+          <i class="fas fa-plus-circle"></i> Add
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Rate</th>
+      <th scope="col">Discount Type</th>
+      <th scope="col">Discount Groups</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @discounts.each_with_index do |discount, index| %>
+      <tr>
+        <th scope="row"><%= index + 1 %></td>
+        <td><%= discount.rate %></td>
+        <td><%= discount.discount_type.humanize %></td>
+        <td>
+          <ul>
+            <% if discount.discount_group.present? %>
+              <% group = discount.discount_group %>
+                <ul>
+                  <% group.products.each do |product| %>
+                    <li><%= product.name %></li>
+                  <% end %>
+                </ul>
+            <% end %>
+          </ul>
+        </td>
+        <td class="d-flex align-items-center">
+          <% if current_user.is_admin? %>
+            <%= link_to edit_admin_discount_path(discount), class: "btn btn-primary btn-sm" do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+            <%= button_to admin_discount_path(discount), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

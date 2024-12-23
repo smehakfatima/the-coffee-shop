@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">The Coffee Shop</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <% if user_signed_in? %>
+        <li class="nav-item active">
+            <a class="nav-link" href="<%= dashboard_index_path%>">Products</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<%= carts_path %>">Cart</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<%= orders_path %>">My Orders</a>
+        </li>
+        <% if current_user&.is_admin? %>
+            <%= link_to 'Manage Tax Rates', admin_tax_rates_path, class: "nav-link" %>
+            <%= link_to 'Manage Discounts', admin_discounts_path, class: "nav-link" %>
+        <% end %>
+        <li class="nav-item">
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav-link" %> 
+        </li>
+      <% else %>
+        <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_session_path %>">Login</a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

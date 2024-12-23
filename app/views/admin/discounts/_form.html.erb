@@ -1,0 +1,32 @@
+<div class="container mt-5"> 
+  <%= form_with model: [:admin, @discount], local: true do |form| %>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <%= form.label :discount_type, "Select an Discount Type", class: "form-label" %>
+        <%= form.select :discount_type, Discount.discount_types.keys.map { |w| [w.humanize, w] }, {}, class: "form-select", aria: { label: "Select an option" } %>
+      </div>
+      <div class="col-md-6 mb-3">
+        <%= form.label :rate, class: "form-label" %>
+        <%= form.number_field :rate, class: "form-control", placeholder: "Enter a rate", step: "0.01", min: "0" %>
+      </div>
+    </div>
+
+    <h3>Discount Group</h3>
+    <div id="discount-groups">
+      <%= form.fields_for :discount_group do |group_form| %>
+        <%= render 'admin/discounts/discount_group_fields', f: group_form %>
+      <% end %>
+
+    </div>
+
+    <div class="d-flex justify-content-center mt-3">
+      <%= form.submit class: 'btn btn-success mx-2' do %>
+        <i class="fas fa-check"></i> Submit
+      <% end %>
+      <%= link_to admin_discounts_path, class: 'btn btn-secondary mx-2' do %>
+        <i class="fas fa-arrow-left"></i> Back
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
