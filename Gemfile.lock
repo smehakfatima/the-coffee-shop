@@ -125,8 +125,8 @@ GEM
       tzinfo
     ffi (1.17.0-x86_64-darwin)
     ffi (1.17.0-x86_64-linux-gnu)
-    font-awesome-sass (5.15.1)
-      sassc (>= 1.11)
+    font-awesome-sass (6.7.2)
+      sassc (~> 2.0)
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
@@ -389,7 +389,7 @@ DEPENDENCIES
   cocoon
   debug
   devise
-  font-awesome-sass (~> 5.15)
+  font-awesome-sass (~> 6.7)
   importmap-rails
   jbuilder
   jquery-rails
