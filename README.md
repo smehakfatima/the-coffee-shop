@@ -23,3 +23,9 @@
 2. The application should now be accessible at `http://localhost:3000`
 3. Navigate to  `http://localhost:3000/admin` for admin panel
 4. Use admin@gmail.com password as password to login to admin panel
+
+## docker setup
+1. install docker and run these commands
+2. `docker-compose build`
+3. `docker-compose up`
+4. `docker-compose run web rake db:setup`
