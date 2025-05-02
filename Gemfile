@@ -36,7 +36,7 @@ gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
 
-gem 'font-awesome-sass', '~> 5.15'
+gem 'font-awesome-sass', '~> 6.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
